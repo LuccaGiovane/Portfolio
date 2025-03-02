@@ -127,10 +127,12 @@ body {
 /* Estilização dos ícones das linguagens */
 .programming-icons {
   display: flex;
+  flex-wrap: wrap;    /* Adicionado para permitir quebra de linha */
   justify-content: center;
-  gap: 2rem;       /* Espaço entre os ícones */
-  margin: 2rem 0;  /* Espaço vertical para separar da seção anterior */
+  gap: 2rem;       
+  margin: 2rem 0;
 }
+
 
 .programming-icons img {
   width: 60px;     /* Define a largura padronizada */
@@ -240,29 +242,34 @@ body {
 }
 
 .social-icons {
-  /* Mantém o conteúdo centralizado e os ícones/links lado a lado */
-  display: flex;
-  justify-content: center;
-  gap: 2rem;        /* Espaçamento horizontal entre os itens */
-  margin-top: 2rem; /* Espaço opcional acima dos ícones */
+  display: flex;              /* Mantém todos os links lado a lado */
+  justify-content: center;    /* Centraliza horizontalmente */
+  gap: 2rem;                  /* Espaço horizontal entre cada rede */
+  margin-top: 2rem;           /* Espaço opcional acima */
 }
 
 .social-icons a {
-  /* Estilo para links dentro da seção de ícones sociais */
-  display: flex;            /* Para ícone e texto ficarem na mesma linha */
-  align-items: center;      /* Alinha verticalmente no centro */
-  gap: 0.5rem;              /* Espaço entre ícone e texto */
-  color: var(--accent-color);  /* Cor do texto/ícone (ajuste conforme seu gosto) */
-  text-decoration: none;
-  font-weight: 600;         /* Deixa o texto um pouco mais destacado */
+  display: flex;              /* Exibe o ícone e o texto juntos */
+  flex-direction: column;     /* Ícone em cima, texto embaixo */
+  align-items: center;        /* Centraliza o ícone e texto no eixo horizontal */
+  text-decoration: none;      /* Remove sublinhado do link */
+  color: var(--accent-color); /* Cor do link */
+  font-weight: 600;           /* Negrito */
+  gap: 0.5rem;                /* Espaço entre ícone e texto */
   transition: color 0.2s ease;
 }
 
 .social-icons a:hover {
-  /* Pequeno efeito de hover */
   color: #fff;
-  text-decoration: underline; /* Se quiser sublinhar ao passar o mouse */
+  text-decoration: underline;
 }
+
+.social-icons img.social-icon {
+  width: 40px;   /* Tamanho do ícone menor que o de Skills */
+  height: 40px;
+  object-fit: contain;
+}
+
 
 
 /* Rodapé */
