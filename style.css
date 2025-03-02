@@ -124,6 +124,21 @@ body {
   text-decoration: underline;
 }
 
+/* Estilização dos ícones das linguagens */
+.programming-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;       /* Espaço entre os ícones */
+  margin: 2rem 0;  /* Espaço vertical para separar da seção anterior */
+}
+
+.programming-icons img {
+  width: 60px;     /* Define a largura padronizada */
+  height: 60px;    /* Define a altura padronizada */
+  object-fit: contain;
+}
+
+
 .btn-primary {
   display: inline-block;
   background-color: transparent;
