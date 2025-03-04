@@ -44,6 +44,19 @@ body {
   text-decoration: none;
 }
 
+.logo-svg {
+  display: block;
+
+}
+
+.logo-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem; /* mesmo tamanho que antes */
+  font-weight: 700;
+  fill: var(--accent-color);
+}
+
+
 .navbar ul {
   display: flex;
   gap: 2rem;
