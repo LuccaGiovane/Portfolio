@@ -13,7 +13,7 @@ html {
 :root {
   --bg-color: #0a192f;      /* Fundo escuro */
   --text-color: #ccd6f6;    /* Texto claro */
-  --accent-color: #64ffda;  /* Destaque */
+  --accent-color: #64ffda;  /* Destaque (azul claro) */
   --nav-color: #8892b0;
 }
 
@@ -37,6 +37,10 @@ body {
   z-index: 999;
 }
 
+.logo {
+  margin-right: 30px; /* Espaço de 30px entre a logo e os links */
+}
+
 .logo a {
   font-size: 1.5rem;
   font-weight: 700;
@@ -46,7 +50,6 @@ body {
 
 .logo-svg {
   display: block;
-
 }
 
 .logo-text {
@@ -56,11 +59,13 @@ body {
   fill: var(--accent-color);
 }
 
-
 .navbar ul {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 40px;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar a {
@@ -76,18 +81,54 @@ body {
 
 /* Botão Resume no menu */
 .btn-resume {
-  margin-left: 2rem;
-  padding: 0.6rem 1rem;
-  border: 1px solid var(--accent-color);
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  background: transparent;
   color: var(--accent-color);
-  text-decoration: none;
-  font-size: 0.9rem;
+  border: 1px solid var(--accent-color);
   border-radius: 4px;
-  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: visible; /* Permite que as partículas apareçam fora do botão */
+  transition: color 0.3s ease;
+  margin-right: 30px; /* 30px de espaço no lado direito */
 }
 
-.btn-resume:hover {
-  background-color: rgba(100, 255, 218, 0.1);
+/* Container para as partículas cobrindo toda a área do botão */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Estilo base para cada partícula */
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  opacity: 1;
+  transform: scale(1);
+  animation: particleAnim 1s ease-out forwards;
+}
+
+/* A animação faz com que a partícula se desloque para fora e desapareça */
+@keyframes particleAnim {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translate(var(--tx), var(--ty));
+  }
 }
 
 /* Seção Hero */
@@ -139,20 +180,25 @@ body {
 /* Estilização dos ícones das linguagens */
 .programming-icons {
   display: flex;
-  flex-wrap: wrap;    /* Adicionado para permitir quebra de linha */
+  flex-wrap: wrap;    /* Permite quebra de linha */
   justify-content: center;
-  gap: 2rem;       
+  gap: 2rem;
   margin: 2rem 0;
 }
 
 .programming-icons img {
-  width: 60px;     /* Define a largura padronizada */
-  height: 60px;    /* Define a altura padronizada */
+  width: 60px;     /* Largura padronizada */
+  height: 60px;    /* Altura padronizada */
   object-fit: contain;
 }
 
+/* Botão Check out my Github! */
+/* Modificado para ter o mesmo padrão visual do botão Resume, mas com efeito de brilho nas bordas */
 .btn-primary {
   display: inline-block;
+  position: relative;
+  z-index: 0;
+  overflow: visible; /* Permite que o brilho apareça fora do botão */
   background-color: transparent;
   color: var(--accent-color);
   border: 1px solid var(--accent-color);
@@ -161,12 +207,13 @@ body {
   text-decoration: none;
   font-size: 1rem;
   font-weight: 600;
-  transition: background-color 0.3s ease;
-  align-self: flex-start; 
+  transition: box-shadow 0.3s ease;
+  align-self: flex-start;
 }
 
 .btn-primary:hover {
-  background-color: rgba(100, 255, 218, 0.1);
+  box-shadow: 0 0 8px var(--accent-color);
+  /* Mantém a cor do texto sem alteração */
 }
 
 /* Seções gerais */
@@ -188,25 +235,24 @@ body {
 }
 
 .carousel-container {
-  position: relative;       
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .carousel {
   display: flex;
-  gap: 2rem;                
+  gap: 2rem;
   scroll-behavior: smooth;
-  overflow-x: auto;         
-  overflow-x: auto;     
-  overflow-y: hidden;  
-  scrollbar-width: none;      
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
 }
 
 .carousel::-webkit-scrollbar {
-  display: none;                  
+  display: none;
 }
 
 .prev-btn,
@@ -227,7 +273,7 @@ body {
 
 /* Cada card do carrossel */
 .project-card {
-  flex: 0 0 auto;           
+  flex: 0 0 auto;
   width: 350px;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
@@ -274,22 +320,22 @@ body {
   transition: background-color 0.3s ease;
 }
 
-
+/* Ícones sociais */
 .social-icons {
-  display: flex;             
-  justify-content: center;   
-  gap: 2rem;                  
-  margin-top: 2rem;           
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .social-icons a {
-  display: flex;             
-  flex-direction: column;     
-  align-items: center;        
-  text-decoration: none;      
-  color: var(--accent-color); 
-  font-weight: 600;             
-  gap: 0.5rem;                
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 600;
+  gap: 0.5rem;
   transition: color 0.2s ease;
 }
 
@@ -299,7 +345,7 @@ body {
 }
 
 .social-icons img.social-icon {
-  width: 40px;   
+  width: 40px;
   height: 40px;
   object-fit: contain;
 }
