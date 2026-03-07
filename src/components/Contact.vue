@@ -1,21 +1,22 @@
 <script setup lang="ts">
+const base = import.meta.env.BASE_URL
 const links = [
   {
     href: 'https://www.linkedin.com/in/luccagiovane/',
     label: 'LinkedIn',
-    icon: '/icons/Linkedin-logo.svg',
+    icon: `${base}icons/Linkedin-logo.svg`,
     external: true,
   },
   {
     href: 'https://www.instagram.com/_luuuucca/',
     label: 'Instagram',
-    icon: '/icons/Instagram-logo.svg',
+    icon: `${base}icons/Instagram-logo.svg`,
     external: true,
   },
   {
     href: 'mailto:lucca.giovane.gomes@uel.br',
     label: 'Email',
-    icon: '/icons/Email-icon.svg',
+    icon: `${base}icons/Email-icon.svg`,
     external: false,
   },
 ]
