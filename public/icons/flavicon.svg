@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <polygon points="40,2 72.91,21 72.91,59 40,78 7.09,59 7.09,21" 
+           stroke="#22d3ee" stroke-width="2" fill="none"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+        font-family="sans-serif" font-size="1rem" font-weight="700" fill="#22d3ee">LG</text>
+</svg>

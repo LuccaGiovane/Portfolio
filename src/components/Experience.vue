@@ -1,8 +1,14 @@
 <script setup lang="ts">
 const jobs = [
   {
+    title: 'Full Stack Developer',
+    period: 'May 2025 – Present',
+    location: 'Tars Tech, Londrina, Brazil',
+    description: 'Developed and maintained robust full stack solutions. Projects included online platforms with user-friendly interfaces and real-time data visualization. Specialized in web development using .NET and C#, Vue.js, Knockout.js, HTML, CSS, JavaScript, Git, GitHub, PostgreSQL, Dbeaver, Docker, Termius, RabbitMQ.',
+  },
+  {
     title: 'Freelancer Backend Developer',
-    period: 'August 2023 – Present',
+    period: 'August 2023 – May 2025',
     location: 'Londrina, Brazil',
     description: 'Developed and maintained robust backend solutions. Projects included online platforms with user-friendly interfaces and real-time data visualization. Specialized in web development using Python, Django, Java and Spring Boot.',
   },
