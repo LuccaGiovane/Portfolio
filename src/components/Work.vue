@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const base = import.meta.env.BASE_URL
 const projects = [
   {
     name: 'DriveOn',
-    image: '/images/driveOn.png',
+    image: `${base}images/driveOn.png`,
     description: 'A sleek front-end project crafted primarily with HTML and CSS for a ride-hailing app website inspired by Uber.',
     link: 'https://luccagiovane.github.io/Front-DriveOn/',
   },
   {
     name: 'Online Diary',
-    image: '/images/diarioOnline.png',
+    image: `${base}images/diarioOnline.png`,
     description: 'An online platform that allows users to create, view, and manage personal diaries. Built using Python, Django, SQLite, and Tailwind CSS.',
     link: 'https://github.com/LuccaGiovane/PSW-DiarioOnline',
   },
   {
     name: 'ScreenMatch',
-    image: '/images/screenMatch.png',
+    image: `${base}images/screenMatch.png`,
     description: 'A marketplace for buying and renting media such as movies and series. Developed using Java, Spring Boot, PostgreSQL, and JPA.',
     link: 'https://github.com/LuccaGiovane/ALURA-ScreenMatch',
   },
