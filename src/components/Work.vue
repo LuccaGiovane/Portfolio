@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const base = import.meta.env.BASE_URL
 const projects = [
@@ -23,14 +23,26 @@ const projects = [
   },
 ]
 
-const carouselRef = ref<HTMLElement | null>(null)
+const currentIndex = ref(0)
 
-function scrollCarousel(direction: number) {
-  if (!carouselRef.value) return
-  const cardWidth = 320
-  const gap = 24
-  const scrollAmount = (cardWidth + gap) * direction
-  carouselRef.value.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+const currentProject = computed(() => projects[currentIndex.value])
+
+function goTo(index: number) {
+  if (index < 0) {
+    currentIndex.value = projects.length - 1
+  } else if (index >= projects.length) {
+    currentIndex.value = 0
+  } else {
+    currentIndex.value = index
+  }
+}
+
+function prev() {
+  goTo(currentIndex.value - 1)
+}
+
+function next() {
+  goTo(currentIndex.value + 1)
 }
 </script>
 
@@ -38,42 +50,64 @@ function scrollCarousel(direction: number) {
   <section id="work" class="work section">
     <span class="section-title">Work</span>
     <h2 class="section-heading">Featured projects</h2>
-    <div class="carousel-wrap">
-      <button class="carousel-btn prev" aria-label="Anterior" @click="scrollCarousel(-1)">←</button>
-      <div ref="carouselRef" class="carousel">
-        <a
-          v-for="project in projects"
-          :key="project.name"
-          :href="project.link"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="project-card"
-        >
-          <div class="card-image">
-            <img :src="project.image" :alt="project.name" />
-          </div>
-          <h3 class="card-title">{{ project.name }}</h3>
-          <p class="card-desc">{{ project.description }}</p>
-          <span class="card-link">View project →</span>
-        </a>
+    <div class="carousel">
+      <div class="carousel-stage">
+        <button class="carousel-btn prev" aria-label="Anterior" @click="prev">←</button>
+        <div class="card-container">
+          <Transition name="slide" mode="out-in">
+            <a
+              :key="currentProject.name"
+              :href="currentProject.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-card"
+            >
+              <div class="card-image">
+                <img :src="currentProject.image" :alt="currentProject.name" />
+              </div>
+              <h3 class="card-title">{{ currentProject.name }}</h3>
+              <p class="card-desc">{{ currentProject.description }}</p>
+              <span class="card-link">View project →</span>
+            </a>
+          </Transition>
+        </div>
+        <button class="carousel-btn next" aria-label="Próximo" @click="next">→</button>
       </div>
-      <button class="carousel-btn next" aria-label="Próximo" @click="scrollCarousel(1)">→</button>
+      <div class="carousel-dots">
+        <button
+          v-for="(p, i) in projects"
+          :key="p.name"
+          :aria-label="`Ver projeto ${p.name}`"
+          :class="['dot', { active: i === currentIndex }]"
+          @click="goTo(i)"
+        />
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.carousel-wrap {
-  position: relative;
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.carousel-stage {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .carousel-btn {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,31 +117,23 @@ function scrollCarousel(direction: number) {
   border-radius: var(--radius);
   cursor: pointer;
   font-size: 1.25rem;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
 }
 
 .carousel-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
+  transform: scale(1.05);
 }
 
-.carousel {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding: 0.5rem 0;
-  -ms-overflow-style: none;
-}
-
-.carousel::-webkit-scrollbar {
-  display: none;
+.card-container {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 6px 0;
 }
 
 .project-card {
-  flex: 0 0 300px;
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   background: var(--bg-elevated);
@@ -121,6 +147,22 @@ function scrollCarousel(direction: number) {
 .project-card:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
+}
+
+/* Slide transition */
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(24px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-24px);
 }
 
 .card-image {
@@ -157,18 +199,42 @@ function scrollCarousel(direction: number) {
   padding: 1rem 1.25rem;
 }
 
+.carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.dot:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
 @media (max-width: 640px) {
+  .carousel-stage {
+    gap: 0.5rem;
+  }
+
   .carousel-btn {
-    display: none;
-  }
-
-  .carousel {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .project-card {
-    flex: 0 0 280px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
   }
 }
 </style>
