@@ -33,24 +33,3 @@ publicado como site estático no **GitHub Pages**.
 ├── public/               # imagens, ícones SVG e CV
 └── next.config.ts        # export estático + basePath /Portfolio em produção
 ```
-
-> Para editar o conteúdo do site (textos, projetos, experiências, links das redes),
-> mexa apenas em [`lib/data.ts`](lib/data.ts) — os componentes leem tudo de lá.
-
-## Desenvolvimento
-
-```bash
-npm install
-npm run dev        # http://localhost:3000
-```
-
-## Build / Deploy (GitHub Pages)
-
-```bash
-npm run build      # gera o site estático em ./out
-```
-
-Em produção o `basePath` é `/Portfolio` (o repositório é servido em
-`https://<user>.github.io/Portfolio`). O arquivo `public/.nojekyll` garante que o
-GitHub Pages sirva a pasta `_next`. Publique o conteúdo de `./out` no branch/pasta
-configurado no GitHub Pages.
