@@ -32,10 +32,13 @@ export const site = {
   photo: "/lucca.webp",
 } as const;
 
-// Link mailto com assunto e corpo pré-preenchidos.
-export const mailtoHref = `mailto:${site.email}?subject=${encodeURIComponent(
-  "Let's connect",
-)}&body=${encodeURIComponent("Hello Lucca,\n\n")}`;
+// Abre o compose do Gmail em nova aba, com destinatário/assunto/corpo
+// pré-preenchidos (mailto: dependeria de um cliente de email configurado).
+export const emailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+  site.email,
+)}&su=${encodeURIComponent("Let's connect")}&body=${encodeURIComponent(
+  "Hello Lucca,\n\n",
+)}`;
 
 export const nav = [
   { label: "About", href: "#about" },
