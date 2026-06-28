@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { site, nav } from "@/lib/data";
 import { asset } from "@/lib/asset";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+  const [scrolled, setScrolled] = useState(false);
 
-  // Destaca o link da seção visível durante o scroll.
+  // Destaca o link da seção visível durante o scroll + sombra ao rolar.
   useEffect(() => {
     const onScroll = () => {
       const sections = document.querySelectorAll<HTMLElement>("section[id]");
@@ -20,6 +22,7 @@ export default function Header() {
         }
       });
       setActive(current);
+      setScrolled(window.scrollY > 8);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -27,13 +30,20 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed z-50 w-full bg-white shadow-sm">
+    <header
+      className={`fixed z-50 w-full border-b backdrop-blur-md transition-colors duration-300 ${
+        scrolled
+          ? "border-border bg-bg/80 shadow-sm"
+          : "border-transparent bg-bg/60"
+      }`}
+    >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand text-xl font-bold text-white">
-            {site.initials}
-          </span>
-          <span className="ml-2 text-lg font-semibold">{site.shortName}</span>
+        <a
+          href="#"
+          className="font-display text-lg font-semibold text-text transition-colors hover:text-accent"
+        >
+          {site.shortName}
+          <span className="text-accent">.</span>
         </a>
 
         {/* Navegação desktop */}
@@ -42,7 +52,9 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className={`nav-link ${active && `#${active}` === item.href ? "active" : ""}`}
+              className={`nav-link text-subtext transition-colors hover:text-text ${
+                active && `#${active}` === item.href ? "active text-text" : ""
+              }`}
             >
               {item.label}
             </a>
@@ -51,32 +63,36 @@ export default function Header() {
             href={asset(site.resumeFile)}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md bg-brand px-4 py-2 text-white transition duration-300 hover:bg-brand-dark"
+            className="rounded-md bg-accent px-4 py-2 text-on-accent transition duration-300 hover:bg-accent-hover"
           >
             Resume
           </a>
+          <ThemeToggle />
         </nav>
 
-        {/* Botão menu mobile */}
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          className="text-2xl text-gray-600 md:hidden"
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? <FaXmark /> : <FaBars />}
-        </button>
+        {/* Ações mobile */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            className="flex h-9 w-9 items-center justify-center text-2xl text-subtext"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <FaXmark /> : <FaBars />}
+          </button>
+        </div>
       </div>
 
       {/* Menu mobile */}
       {menuOpen && (
-        <div className="bg-white px-6 py-4 shadow-lg md:hidden">
+        <div className="border-t border-border bg-bg px-6 py-4 md:hidden">
           <div className="flex flex-col space-y-4">
             {nav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="nav-link"
+                className="nav-link text-subtext hover:text-text"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
@@ -86,7 +102,7 @@ export default function Header() {
               href={asset(site.resumeFile)}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md bg-brand px-4 py-2 text-center text-white transition duration-300 hover:bg-brand-dark"
+              className="rounded-md bg-accent px-4 py-2 text-center text-on-accent transition duration-300 hover:bg-accent-hover"
             >
               Resume
             </a>

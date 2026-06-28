@@ -2,9 +2,9 @@ import { site } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 px-6 py-8 text-center text-white">
-      <p className="mb-2">Developed by {site.name}</p>
-      <p className="text-gray-400">© All rights reserved.</p>
+    <footer className="border-t border-border bg-bg-alt px-6 py-8 text-center">
+      <p className="mb-2 text-subtext">Developed by {site.name}</p>
+      <p className="font-mono text-sm text-muted">© All rights reserved.</p>
     </footer>
   );
 }

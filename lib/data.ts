@@ -14,6 +14,8 @@ import {
   SiDocker,
   SiRabbitmq,
   SiGit,
+  SiTypescript,
+  SiNodedotjs,
 } from "react-icons/si";
 
 export const site = {
@@ -39,19 +41,43 @@ export const nav = [
 export type Skill = {
   name: string;
   icon: IconType; // componente de ícone (react-icons)
-  color: string; // cor de marca aplicada ao ícone
+  // Cor de marca aplicada ao ícone no hover. Logos monocromáticos (Next.js,
+  // Prisma) usam var(--text) para se adaptarem ao tema claro/escuro.
+  color: string;
 };
 
-export const skills: Skill[] = [
-  { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
-  { name: "Next.js", icon: SiNextdotjs, color: "#111827" },
-  { name: "Prisma", icon: SiPrisma, color: "#2D3748" },
-  { name: ".NET", icon: SiDotnet, color: "#512BD4" },
-  { name: "Vue.js", icon: SiVuedotjs, color: "#4FC08D" },
-  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
-  { name: "Docker", icon: SiDocker, color: "#2496ED" },
-  { name: "RabbitMQ", icon: SiRabbitmq, color: "#FF6600" },
-  { name: "Git", icon: SiGit, color: "#F05032" },
+export type SkillGroup = {
+  label: string;
+  items: Skill[];
+};
+
+export const stack: SkillGroup[] = [
+  {
+    label: "Frontend",
+    items: [
+      { name: "Next.js", icon: SiNextdotjs, color: "var(--text)" },
+      { name: "Vue.js", icon: SiVuedotjs, color: "#42b883" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+    ],
+  },
+  {
+    label: "Backend",
+    items: [
+      { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
+      { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
+      { name: ".NET", icon: SiDotnet, color: "#512BD4" },
+      { name: "Prisma", icon: SiPrisma, color: "var(--text)" },
+    ],
+  },
+  {
+    label: "Infra & Tools",
+    items: [
+      { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { name: "RabbitMQ", icon: SiRabbitmq, color: "#FF6600" },
+      { name: "Docker", icon: SiDocker, color: "#2496ED" },
+      { name: "Git", icon: SiGit, color: "#F05032" },
+    ],
+  },
 ];
 
 export type Experience = {
