@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section id="about" className="bg-bg-alt px-6 py-20">
       <div className="container mx-auto max-w-4xl">
-        <SectionHeading>About</SectionHeading>
+        <SectionHeading number="01">About</SectionHeading>
 
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-3">

@@ -7,7 +7,7 @@ export default function Work() {
   return (
     <section id="work" className="bg-bg-alt px-6 py-20">
       <div className="container mx-auto max-w-6xl">
-        <SectionHeading>My Work</SectionHeading>
+        <SectionHeading number="03">My Work</SectionHeading>
 
         {projects.length === 0 ? (
           <div className="rounded-lg border border-dashed border-border bg-surface px-6 py-16 text-center">

@@ -26,10 +26,16 @@ export const site = {
   location: "Londrina, Brazil",
   email: "contato.luccagomes@gmail.com",
   githubUrl: "https://github.com/LuccaGiovane",
-  linkedinUrl: "https://www.linkedin.com/in/lucca-gomes/",
-  instagramUrl: "https://www.instagram.com/",
+  linkedinUrl: "https://www.linkedin.com/in/luccagiovane/",
+  instagramUrl: "https://www.instagram.com/_luuuucca/",
   resumeFile: "/CV-LuccaGomes.pdf",
+  photo: "/lucca.webp",
 } as const;
+
+// Link mailto com assunto e corpo pré-preenchidos.
+export const mailtoHref = `mailto:${site.email}?subject=${encodeURIComponent(
+  "Let's connect",
+)}&body=${encodeURIComponent("Hello Lucca,\n\n")}`;
 
 export const nav = [
   { label: "About", href: "#about" },
