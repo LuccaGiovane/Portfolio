@@ -3,6 +3,19 @@
  * Edite aqui (texto, links, projetos, experiências) sem mexer nos componentes.
  */
 
+import type { IconType } from "react-icons";
+import {
+  SiNestjs,
+  SiNextdotjs,
+  SiPrisma,
+  SiDotnet,
+  SiVuedotjs,
+  SiPostgresql,
+  SiDocker,
+  SiRabbitmq,
+  SiGit,
+} from "react-icons/si";
+
 export const site = {
   name: "Lucca Giovane Gomes",
   shortName: "Lucca Gomes",
@@ -24,24 +37,20 @@ export const nav = [
 
 export type Skill = {
   name: string;
-  icon: string; // caminho relativo dentro de /public
+  icon: IconType; // componente de ícone (react-icons)
+  color: string; // cor de marca aplicada ao ícone
 };
 
 export const skills: Skill[] = [
-  { name: "Java", icon: "/icons/Java-icon.svg" },
-  { name: "Python", icon: "/icons/Python-icon.svg" },
-  { name: "C#/.NET", icon: "/icons/Csharp-icon.svg" },
-  { name: "Vue.js", icon: "/icons/Vue-icon.svg" },
-  { name: "Knockout", icon: "/icons/knockout-icon.svg" },
-  { name: "JavaScript", icon: "/icons/Javascript-icon.svg" },
-  { name: "Spring", icon: "/icons/Spring-icon.svg" },
-  { name: "Django", icon: "/icons/Django-icon.svg" },
-  { name: "Flask", icon: "/icons/Flask-icon.svg" },
-  { name: "PostgreSQL", icon: "/icons/Postgres-icon.svg" },
-  { name: "HTML5", icon: "/icons/Html-icon.svg" },
-  { name: "CSS3", icon: "/icons/Css-icon.svg" },
-  { name: "Git", icon: "/icons/Git-icon.svg" },
-  { name: "C++", icon: "/icons/Cpp-icon.svg" },
+  { name: "NestJS", icon: SiNestjs, color: "#E0234E" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#111827" },
+  { name: "Prisma", icon: SiPrisma, color: "#2D3748" },
+  { name: ".NET", icon: SiDotnet, color: "#512BD4" },
+  { name: "Vue.js", icon: SiVuedotjs, color: "#4FC08D" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+  { name: "Docker", icon: SiDocker, color: "#2496ED" },
+  { name: "RabbitMQ", icon: SiRabbitmq, color: "#FF6600" },
+  { name: "Git", icon: SiGit, color: "#F05032" },
 ];
 
 export type Experience = {

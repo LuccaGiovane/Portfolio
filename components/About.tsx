@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { skills } from "@/lib/data";
-import { asset } from "@/lib/asset";
 import SectionHeading from "./SectionHeading";
 
 export default function About() {
@@ -33,21 +31,22 @@ export default function About() {
           <div className="md:w-1/3">
             <h3 className="mb-4 text-xl font-semibold">Languages and Tools</h3>
             <div className="grid grid-cols-3 gap-4">
-              {skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="flex flex-col items-center text-center transition-transform duration-300 hover:scale-110"
-                >
-                  <Image
-                    src={asset(skill.icon)}
-                    alt={skill.name}
-                    width={40}
-                    height={40}
-                    className="mb-2 h-10 w-10 object-contain"
-                  />
-                  <span className="text-sm">{skill.name}</span>
-                </div>
-              ))}
+              {skills.map((skill) => {
+                const Icon = skill.icon;
+                return (
+                  <div
+                    key={skill.name}
+                    className="flex flex-col items-center text-center transition-transform duration-300 hover:scale-110"
+                  >
+                    <Icon
+                      className="mb-2 text-4xl"
+                      style={{ color: skill.color }}
+                      aria-hidden
+                    />
+                    <span className="text-sm">{skill.name}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
