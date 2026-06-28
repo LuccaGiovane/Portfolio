@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/* Habilita o dark mode por classe (.dark no <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Paleta Catppuccin.
+ * Tema claro = Latte | Tema escuro = Mocha | Acento = Mauve.
+ * Tokens semânticos para os componentes não dependerem de cor crua.
+ */
+:root {
+  color-scheme: light;
+
+  --bg: #eff1f5; /* latte base */
+  --bg-alt: #e6e9ef; /* latte mantle */
+  --surface: #ffffff; /* card elevado */
+  --border: #ccd0da; /* latte surface0 */
+  --text: #4c4f69; /* latte text */
+  --subtext: #6c6f85; /* latte subtext0 */
+  --muted: #8c8fa1; /* latte overlay1 */
+  --accent: #8839ef; /* latte mauve */
+  --accent-hover: #7a2fd8;
+  --on-accent: #ffffff;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #1e1e2e; /* mocha base */
+  --bg-alt: #181825; /* mocha mantle */
+  --surface: #313244; /* mocha surface0 */
+  --border: #45475a; /* mocha surface1 */
+  --text: #cdd6f4; /* mocha text */
+  --subtext: #a6adc8; /* mocha subtext0 */
+  --muted: #7f849c; /* mocha overlay1 */
+  --accent: #cba6f7; /* mocha mauve */
+  --accent-hover: #b48ef0;
+  --on-accent: #1e1e2e;
+}
+
+/* Expõe os tokens como cores/fontes do Tailwind (inline => trocam em runtime). */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-subtext: var(--subtext);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Compensa o header fixo para que as âncoras não fiquem escondidas atrás dele. */
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Animação de entrada do hero */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Rotação do ícone do toggle a cada troca de tema (display none -> block). */
+@keyframes themeIcon {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+.theme-icon {
+  animation: themeIcon 0.4s ease;
+}
+
+/* Reveal on scroll (default = visível; só anima quando "armado" pelo JS). */
+.reveal {
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sublinhado animado dos links da navbar */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-in,
+  .theme-icon {
+    animation: none;
+  }
+  .reveal {
+    transition: none;
+  }
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
+}
