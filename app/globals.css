@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Compensa o header fixo para que as âncoras não fiquem escondidas atrás dele. */
+  scroll-padding-top: 6rem;
 }
 
 body {

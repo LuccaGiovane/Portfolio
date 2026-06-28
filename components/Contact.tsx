@@ -12,11 +12,11 @@ export default function Contact() {
   return (
     <section id="contact" className="bg-gray-50 px-6 py-20">
       <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="mb-4 text-3xl font-bold text-gray-900">Get In Touch</h2>
+        <h2 className="mb-4 text-3xl font-bold text-gray-900">Let&apos;s Connect</h2>
         <p className="mx-auto mb-12 max-w-2xl text-gray-600">
-          I&apos;m currently looking for new opportunities and would love to hear
-          from you. Whether you have a question or just want to say hi, I&apos;ll
-          do my best to get back to you!
+          I&apos;m happy where I am right now, but I&apos;m always open to
+          connecting with fellow developers and interesting people. Got a
+          question or just want to say hi? My inbox is always open.
         </p>
 
         <div className="mb-12 flex justify-center space-x-6">

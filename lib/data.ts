@@ -21,7 +21,8 @@ export const site = {
   shortName: "Lucca Gomes",
   initials: "LG",
   role: "Full-Stack Developer",
-  email: "lucca.gomes@solintel.com.br",
+  location: "Londrina, Brazil",
+  email: "contato.luccagomes@gmail.com",
   githubUrl: "https://github.com/LuccaGiovane",
   linkedinUrl: "https://www.linkedin.com/in/lucca-gomes/",
   instagramUrl: "https://www.instagram.com/",
@@ -63,11 +64,11 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
-    role: "Full Stack Developer Jr.",
+    role: "Full-Stack Developer",
     company: "TARS, Londrina",
     period: "May 2025 - Present",
     description:
-      "Implement features and bug fixes in company systems and products using Vue.js and Knockout.js on the frontend and C#/.NET on the backend. Collaborate with cross-functional teams to deliver high-quality software solutions.",
+      "I started as a Junior Full-Stack Developer, building and maintaining the company's products and internal systems. In early 2026 I was promoted to mid-level (Pleno), as the stack began moving to a Node ecosystem, with Next.js on the frontend, NestJS on the backend and Prisma as the ORM, alongside the existing Vue.js and C#/.NET codebase.",
     logo: "/images/TARS_logo.jpg",
   },
   {
@@ -95,29 +96,6 @@ export type Project = {
   tags: string[];
 };
 
-export const projects: Project[] = [
-  {
-    title: "DriveOn",
-    description:
-      "A front-end application styled like Uber, built with pure HTML and CSS to demonstrate modern UI/UX principles for ride-sharing platforms.",
-    image: "/images/driveOn.png",
-    href: "https://github.com/LuccaGiovane",
-    tags: ["HTML", "CSS", "UI/UX"],
-  },
-  {
-    title: "Online Diary",
-    description:
-      "A platform for creating and managing personal diaries, built with Python/Django, SQLite for the database, and styled with Tailwind CSS for a clean, responsive interface.",
-    image: "/images/diarioOnline.png",
-    href: "https://github.com/LuccaGiovane",
-    tags: ["Python", "Django", "Tailwind"],
-  },
-  {
-    title: "ScreenMatch",
-    description:
-      "A marketplace for buying and renting media, developed with Java, Spring Boot, PostgreSQL and JPA. Features include user authentication, payment processing, and media streaming.",
-    image: "/images/screenMatch.png",
-    href: "https://github.com/LuccaGiovane",
-    tags: ["Java", "Spring Boot", "PostgreSQL"],
-  },
-];
+// Projetos antigos removidos — novos projetos serão adicionados em breve.
+// Enquanto a lista estiver vazia, a seção Work exibe um empty state.
+export const projects: Project[] = [];

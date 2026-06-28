@@ -10,13 +10,13 @@ export default function Hero() {
             {site.name}.
           </h1>
           <h2 className="mb-6 text-2xl font-semibold text-gray-700 md:text-4xl">
-            I build things for the web.
+            I build full-stack web apps, from database to deploy.
           </h2>
           <p className="mb-8 max-w-lg text-gray-600">
-            I&apos;m a Computer Science student at UEL with a passion for
-            full-stack development. I enjoy creating efficient solutions using
-            modern technologies, with a special affinity for Java and Python
-            ecosystems.
+            I&apos;m a Full-Stack Developer at TARS, based in Londrina, Brazil. I
+            work across the Node ecosystem (Next.js, NestJS and Prisma), and
+            I&apos;m digging deeper into the infrastructure that ships it all:
+            Docker, Cloudflare and the cloud.
           </p>
           <a
             href={site.githubUrl}

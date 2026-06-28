@@ -10,26 +10,28 @@ export default function About() {
         <div className="flex flex-col gap-12 md:flex-row">
           <div className="md:w-2/3">
             <p className="mb-4 text-gray-700">
-              I&apos;m a 26-year-old developer born in Londrina, PR, currently
-              pursuing my degree in Computer Science at UEL (State University of
-              Londrina).
+              I&apos;m a 27-year-old full-stack developer from Londrina, Brazil,
+              with a B.Sc. in Computer Science from the State University of
+              Londrina (UEL, 2025).
             </p>
             <p className="mb-4 text-gray-700">
-              My journey in technology began with a curiosity about how things
-              work, which evolved into a passion for building digital solutions.
-              I&apos;m particularly interested in web development, where I can
-              combine creativity with technical skills to create meaningful
-              applications.
+              I&apos;m currently a mid-level Full-Stack Developer at TARS,
+              building web applications across the Node ecosystem with Next.js,
+              NestJS and Prisma. The web is where I feel at home, and I
+              genuinely enjoy crafting sites and products that people actually
+              use.
             </p>
             <p className="text-gray-700">
-              When I&apos;m not coding, you can find me exploring new
-              technologies, contributing to open-source projects, or enjoying a
-              good cup of coffee while brainstorming my next project.
+              Lately I&apos;ve been expanding into infrastructure and DevOps
+              (Docker, Cloudflare and cloud tooling), so I can take what I build
+              all the way from idea to production. When I&apos;m not coding, I&apos;m
+              usually exploring a new technology or learning something adjacent
+              to the stack.
             </p>
           </div>
 
           <div className="md:w-1/3">
-            <h3 className="mb-4 text-xl font-semibold">Languages and Tools</h3>
+            <h3 className="mb-4 text-xl font-semibold">Tech Stack</h3>
             <div className="grid grid-cols-3 gap-4">
               {skills.map((skill) => {
                 const Icon = skill.icon;

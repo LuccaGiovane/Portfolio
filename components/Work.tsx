@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { projects } from "@/lib/data";
+import { projects, site } from "@/lib/data";
 import { asset } from "@/lib/asset";
 import SectionHeading from "./SectionHeading";
 
@@ -9,7 +9,27 @@ export default function Work() {
       <div className="container mx-auto max-w-6xl">
         <SectionHeading>My Work</SectionHeading>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {projects.length === 0 ? (
+          <div className="rounded-lg border border-dashed border-gray-300 bg-gray-50 px-6 py-16 text-center">
+            <p className="text-lg font-medium text-gray-700">
+              New projects in the works 🚧
+            </p>
+            <p className="mx-auto mt-2 max-w-md text-gray-500">
+              I&apos;m currently building a few things I&apos;m genuinely excited
+              about. They&apos;ll land here soon. In the meantime, my code lives
+              on GitHub.
+            </p>
+            <a
+              href={site.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block rounded-md border border-brand px-6 py-3 text-brand transition duration-300 hover:bg-brand hover:text-white"
+            >
+              Visit my GitHub
+            </a>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <article
               key={project.title}
@@ -48,7 +68,8 @@ export default function Work() {
               </div>
             </article>
           ))}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );
