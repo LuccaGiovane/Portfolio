@@ -29,47 +29,77 @@ export default function Work() {
             </a>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className="overflow-hidden rounded-lg border border-border bg-surface transition duration-300 hover:-translate-y-1.5 hover:border-accent"
-              >
-                <div className="relative h-48 w-full bg-bg-alt">
-                  <Image
-                    src={asset(project.image)}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="mb-2 font-display text-xl font-semibold text-text">
-                    {project.title}
-                  </h3>
-                  <p className="mb-4 text-subtext">{project.description}</p>
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-accent/10 px-3 py-1 font-mono text-xs font-medium text-accent"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block rounded-md border border-accent px-4 py-2 text-sm text-accent transition duration-300 hover:bg-accent hover:text-on-accent"
+          <div className="flex flex-col gap-16 md:gap-24">
+            {projects.map((project, index) => {
+              const mediaFirst = index % 2 === 0;
+              return (
+                <article
+                  key={project.title}
+                  className="group grid items-center gap-8 md:grid-cols-2 md:gap-12"
+                >
+                  {/* Mídia (vídeo com poster, ou imagem) */}
+                  <div
+                    className={`relative aspect-video w-full overflow-hidden rounded-lg border border-border bg-surface shadow-sm transition duration-300 group-hover:border-accent ${
+                      mediaFirst ? "md:order-1" : "md:order-2"
+                    }`}
                   >
-                    View Project
-                  </a>
-                </div>
-              </article>
-            ))}
+                    {project.video ? (
+                      <video
+                        className="h-full w-full object-cover"
+                        poster={asset(project.image)}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        aria-label={`${project.title} demo`}
+                      >
+                        <source src={asset(project.video)} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <Image
+                        src={asset(project.image)}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    )}
+                  </div>
+
+                  {/* Texto */}
+                  <div
+                    className={mediaFirst ? "md:order-2" : "md:order-1"}
+                  >
+                    <h3 className="font-display text-2xl font-semibold text-text md:text-3xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-4 leading-relaxed text-subtext">
+                      {project.description}
+                    </p>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-accent/10 px-3 py-1 font-mono text-xs font-medium text-accent"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-8 inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-medium text-on-accent transition duration-300 hover:opacity-90"
+                    >
+                      Live Demo
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         )}
       </div>

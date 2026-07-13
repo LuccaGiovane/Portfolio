@@ -126,11 +126,29 @@ export const experiences: Experience[] = [
 export type Project = {
   title: string;
   description: string;
-  image: string;
-  href: string;
+  image: string; // poster do vídeo / fallback quando não há vídeo
+  video?: string; // opcional: demo em vídeo (mp4), autoplay mudo em loop
+  href: string; // link do demo ao vivo
   tags: string[];
 };
 
-// Projetos antigos removidos — novos projetos serão adicionados em breve.
 // Enquanto a lista estiver vazia, a seção Work exibe um empty state.
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    title: "TASK",
+    description:
+      "A collaborative task manager where teams organize projects, assign tasks across collaborators, and track progress through comments. Built as a full-stack monorepo — a NestJS REST API with JWT authentication, Prisma and Swagger docs, paired with a Next.js 16 / React 19 frontend featuring a dashboard, project management and real-time task detail views.",
+    image: "/images/work/task/demo-TASK-img.png",
+    video: "/images/work/task/demo-TASK.mp4",
+    href: "https://nest-task-web.vercel.app",
+    tags: [
+      "Next.js",
+      "React",
+      "NestJS",
+      "TypeScript",
+      "Prisma",
+      "Tailwind",
+      "Turborepo",
+    ],
+  },
+];
