@@ -17,13 +17,24 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Destaca o link da seção visível usando IntersectionObserver.
+  // Destaca o link da seção visível e atualiza o título da aba por seção.
   useEffect(() => {
+    // id da seção -> rótulo exibido (ex.: work -> "My Work" vira "Work").
+    const labelById: Record<string, string> = Object.fromEntries(
+      nav.map((item) => [item.href.slice(1), item.label]),
+    );
+
     const sections = document.querySelectorAll<HTMLElement>("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          setActive(id);
+          const label = labelById[id];
+          document.title = label
+            ? `${site.shortName} | ${label}`
+            : site.shortName;
         });
       },
       // Ativa quando a seção cruza a faixa logo abaixo do header.

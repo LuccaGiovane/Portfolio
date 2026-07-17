@@ -22,14 +22,17 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const title = `${site.name} | ${site.role}`;
+// Título curto na aba (atualizado por seção no client); versão descritiva só
+// para os cards de compartilhamento (OG/Twitter).
+const pageTitle = site.shortName;
+const shareTitle = `${site.name} | ${site.role}`;
 const description = `${site.role} based in ${site.location}. Building full-stack web applications with the Node ecosystem (Next.js, NestJS, Prisma) and exploring infrastructure with Docker and Cloudflare.`;
 
 export const metadata: Metadata = {
   // Inclui o basePath com barra final para que as URLs absolutas (OG/Twitter)
   // resolvam para .../Portfolio/opengraph-image no GitHub Pages.
   metadataBase: new URL(`https://luccagiovane.github.io${basePath}/`),
-  title,
+  title: pageTitle,
   description,
   keywords: [
     "Lucca Gomes",
@@ -46,13 +49,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title,
+    title: shareTitle,
     description,
     siteName: site.name,
   },
   twitter: {
     card: "summary_large_image",
-    title,
+    title: shareTitle,
     description,
   },
 };
