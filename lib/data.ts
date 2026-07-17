@@ -140,7 +140,7 @@ export const projects: Project[] = [
       "A collaborative task manager where teams organize projects, assign tasks across collaborators, and track progress through comments. Built as a full-stack monorepo — a NestJS REST API with JWT authentication, Prisma and Swagger docs, paired with a Next.js 16 / React 19 frontend featuring a dashboard, project management and real-time task detail views.",
     image: "/images/work/task/demo-TASK-img.png",
     video: "/images/work/task/demo-TASK.mp4",
-    href: "https://nest-task-web.vercel.app",
+    href: "https://demo-task-flow.vercel.app/",
     tags: [
       "Next.js",
       "React",

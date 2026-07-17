@@ -5,7 +5,10 @@ import { asset } from "@/lib/asset";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-bg px-6 pt-32 pb-20">
+    <section
+      id="home"
+      className="relative overflow-hidden bg-bg px-6 pt-32 pb-20"
+    >
       {/* Brilho de acento ao fundo */}
       <div
         aria-hidden
