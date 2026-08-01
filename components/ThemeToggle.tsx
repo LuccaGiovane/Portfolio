@@ -13,8 +13,8 @@ export default function ThemeToggle() {
       title="Toggle theme"
       className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border border-border text-subtext transition-all duration-300 hover:border-accent hover:text-accent active:scale-90"
     >
-      <FaSun className="theme-icon hidden h-4 w-4 dark:block" />
-      <FaMoon className="theme-icon block h-4 w-4 dark:hidden" />
+      <FaSun className="hidden h-4 w-4 dark:block" />
+      <FaMoon className="block h-4 w-4 dark:hidden" />
     </button>
   );
 }

@@ -128,27 +128,31 @@ export type Project = {
   description: string;
   image: string; // poster do vídeo / fallback quando não há vídeo
   video?: string; // opcional: demo em vídeo (mp4), autoplay mudo em loop
-  href: string; // link do demo ao vivo
+  href: string; // demo do app do usuário (/login)
+  adminHref?: string; // demo do painel da empresa (/admin)
   tags: string[];
+  demo?: { email: string; password: string }; // credenciais de demonstração
 };
 
 // Enquanto a lista estiver vazia, a seção Work exibe um empty state.
 export const projects: Project[] = [
   {
-    title: "TASK",
+    title: "TaskFlow",
     description:
-      "A collaborative task manager where teams organize projects, assign tasks across collaborators, and track progress through comments. Built as a full-stack monorepo — a NestJS REST API with JWT authentication, Prisma and Swagger docs, paired with a Next.js 16 / React 19 frontend featuring a dashboard, project management and real-time task detail views.",
+      "A collaborative, multi-tenant task manager for companies. Each company gets its own private space to manage its people, departments and roles, then plans work on a drag-and-drop Kanban board and keeps it moving with comments, file attachments, real-time notifications and progress metrics. It's really two products in one: an admin panel for whoever runs the company, and a focused day-to-day app for the team, with backlog, board, list and completed views for every project. Built as a NestJS + Next.js monorepo and developed spec-first, with every feature backed by automated tests.",
     image: "/images/work/task/demo-TASK-img.png",
     video: "/images/work/task/demo-TASK.mp4",
-    href: "https://demo-task-flow.vercel.app/",
+    href: "https://demo-task-flow.vercel.app/login",
+    adminHref: "https://demo-task-flow.vercel.app/admin",
     tags: [
       "Next.js",
       "React",
       "NestJS",
-      "TypeScript",
+      "PostgreSQL",
       "Prisma",
-      "Tailwind",
+      "RabbitMQ",
       "Turborepo",
     ],
+    demo: { email: "guest@taskflow.com.br", password: "guest" },
   },
 ];

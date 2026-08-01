@@ -2,6 +2,7 @@ import Image from "next/image";
 import { projects, site } from "@/lib/data";
 import { asset } from "@/lib/asset";
 import SectionHeading from "./SectionHeading";
+import DemoCredentials from "./DemoCredentials";
 
 export default function Work() {
   return (
@@ -87,15 +88,34 @@ export default function Work() {
                         </span>
                       ))}
                     </div>
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-8 inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-medium text-on-accent transition duration-300 hover:opacity-90"
-                    >
-                      Live Demo
-                      <span aria-hidden="true">↗</span>
-                    </a>
+                    {project.demo && (
+                      <DemoCredentials
+                        email={project.demo.email}
+                        password={project.demo.password}
+                      />
+                    )}
+                    <div className="mt-8 flex flex-wrap gap-3">
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-medium text-on-accent transition duration-300 hover:opacity-90"
+                      >
+                        User app
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                      {project.adminHref && (
+                        <a
+                          href={project.adminHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-md border border-accent px-6 py-3 text-sm font-medium text-accent transition duration-300 hover:bg-accent hover:text-on-accent"
+                        >
+                          Company panel
+                          <span aria-hidden="true">↗</span>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </article>
               );

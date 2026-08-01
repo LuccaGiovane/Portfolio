@@ -64,7 +64,7 @@ export const metadata: Metadata = {
 // e o prefers-color-scheme do sistema) para evitar flash. Também registra o
 // clique do toggle via event delegation, então ele funciona sem depender da
 // hidratação do React (qualquer elemento com [data-theme-toggle]).
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':!window.matchMedia('(prefers-color-scheme: light)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){document.documentElement.classList.add('dark');}document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-theme-toggle]');if(!b)return;var dark=document.documentElement.classList.toggle('dark');try{localStorage.setItem('theme',dark?'dark':'light');}catch(_){}});})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':!window.matchMedia('(prefers-color-scheme: light)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){document.documentElement.classList.add('dark');}document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-theme-toggle]');if(!b)return;var dark=document.documentElement.classList.toggle('dark');try{localStorage.setItem('theme',dark?'dark':'light');}catch(_){}if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var gs=b.querySelectorAll('svg');gs.forEach(function(s){s.classList.remove('theme-spin');});void b.offsetWidth;gs.forEach(function(s){s.classList.add('theme-spin');setTimeout(function(){s.classList.remove('theme-spin');},400);});});})();`;
 
 export default function RootLayout({
   children,
